@@ -22,8 +22,6 @@ const SCRYFALL = (query, fields = "name", num_results = MAX_RESULTS_,
     throw new Error("Must include a query");
   }
 
-  console.log("query is: ", query);
-
   // don't break scryfall
   if (num_results > MAX_RESULTS_) {
     num_results = MAX_RESULTS_;
@@ -106,7 +104,6 @@ const search_ = (params, num_results = MAX_RESULTS_) => {
   const query_string = Object.entries(params).map(([key, val]) => `${key}=${encodeURIComponent(val)}`).join('&');
   const scryfall_url = `https://api.scryfall.com/cards/search?${query_string}`;
 
-  console.log('searching', scryfall_url);
   let data = [];
   let page = 1;
   let response;
