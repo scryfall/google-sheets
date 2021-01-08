@@ -14,12 +14,14 @@ and the `=SCRYFALL()` function should now be available.
 SCRYFALL(query, fields, num_results, order, dir, unique)
 
 * `query`: Scryfall search query
-* `fields`: List of fields from a [card object](https://api.scryfall.com/cards/4dcdcad5-e4fb-480e-984f-1ac5cdc986b9?format=json&pretty=true) to return, using `.` for nested items.
+* `fields`: List of fields from a card object to return, using `.` for nested items.
 * `num_results`: Number of results to return (maximum 700)
 * `order`: The order to sort cards by, "name" is default
 * `dir`: Direction to return the sorted cards: auto, asc, or desc
 * `unique`: Remove duplicate "cards" (default), art, or prints
 ```
+
+If you are unsure what fields can be in a [card object](https://scryfall.com/docs/api/cards), here is [an example](https://api.scryfall.com/cards/4dcdcad5-e4fb-480e-984f-1ac5cdc986b9?format=json&pretty=true).
 
 # Examples
 
