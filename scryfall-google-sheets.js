@@ -1,4 +1,8 @@
-const MAX_RESULTS_ = 700;
+// this function is available here:
+// https://github.com/scryfall/google-sheets/blob/main/scryfall-google-sheets.js
+// and was last updated on 2021-01-08 (probably)
+
+const MAX_RESULTS_ = 700;  // a safe max due to Google Sheets timeout system
 
 /**
  * Inserts the results of a search in Scryfall into your spreadsheet
@@ -21,8 +25,8 @@ const SCRYFALL = (query, fields = "name", num_results = MAX_RESULTS_,
   console.log("query is: ", query);
 
   // don't break scryfall
-  if (num_results > 700) {
-    num_results = 700;
+  if (num_results > MAX_RESULTS_) {
+    num_results = MAX_RESULTS_;
   }
 
   // the docs say fields is space separated, but allow comma separated too
@@ -78,7 +82,7 @@ const SCRYFALL = (query, fields = "name", num_results = MAX_RESULTS_,
 
       // then, let's do some nice data massaging for use inside Sheets
       if (typeof val === "string") {
-        val = val.replace("\n", "\n\n");  // double space for readability
+        val = val.replace(/\n/g, "\n\n");  // double space for readability
       } else if (Array.isArray(val)) {
         val = field.includes("color") ? val.join("") : val.join(", ");
       }
