@@ -14,7 +14,7 @@ and the `=SCRYFALL()` function should now be available.
 SCRYFALL(query, fields, num_results, order, dir, unique)
 
 * `query`: Scryfall search query
-* `fields`: List of fields from a card object to return, using `.` for nested items.
+* `fields`: List of fields from a card object to return, using `.` for nested items (e.g. prices.eur)
 * `num_results`: Number of results to return (maximum 700)
 * `order`: The order to sort cards by, "name" is default
 * `dir`: Direction to return the sorted cards: auto, asc, or desc
@@ -27,7 +27,7 @@ If you are unsure what fields can be in a [card object](https://scryfall.com/doc
 
 As it can be difficult to describe how to use a function, here are some examples:
 
-### List of creatures with over 10 power
+### List of creatures with 10 or more power
 `=SCRYFALL("type:creature pow>=10")`
 
 ### Legacy legal cards in paper but not available on Magic Online, returning 700 results
