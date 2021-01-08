@@ -56,7 +56,7 @@ const SCRYFALL = (query, fields = "name", num_results = MAX_RESULTS_,
   };
 
   // query scryfall
-  const cards = search_(scryfall_query, num_results);
+  const cards = scryfallSearch_(scryfall_query, num_results);
 
   // now, let's accumulate the results
   let output = [];
@@ -100,7 +100,7 @@ const deepFind_ = (obj, path) => {
 
 
 // paginated query of scryfall
-const search_ = (params, num_results = MAX_RESULTS_) => {
+const scryfallSearch_ = (params, num_results = MAX_RESULTS_) => {
   const query_string = Object.entries(params).map(([key, val]) => `${key}=${encodeURIComponent(val)}`).join('&');
   const scryfall_url = `https://api.scryfall.com/cards/search?${query_string}`;
 
