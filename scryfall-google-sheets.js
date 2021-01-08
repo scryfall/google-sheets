@@ -9,14 +9,14 @@ const MAX_RESULTS_ = 700;  // a safe max due to Google Sheets timeout system
  *
  * @param {"name:braids type:legendary"}  query       Scryfall search query
  * @param {"name power toughness"}        fields      List of fields to return from Scryfall, "name" is default
- * @param {10}                            num_results Number of results (maximum 700)
+ * @param {150}                           num_results Number of results (default 150, maximum 700)
  * @param {name}                          order       The order to sort cards by, "name" is default
  * @param {auto}                          dir         Direction to return the sorted cards: auto, asc, or desc 
  * @param {cards}                         unique      Remove duplicate cards (default), art, or prints
  * @return                                List of Scryfall search results
  * @customfunction
  */
-const SCRYFALL = (query, fields = "name", num_results = MAX_RESULTS_,
+const SCRYFALL = (query, fields = "name", num_results = 150,
                   order = "name", dir = "auto", unique = "cards") => {
   if (query === undefined) { 
     throw new Error("Must include a query");
