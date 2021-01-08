@@ -1,4 +1,6 @@
-Small Google Sheets function to retrieve results from Scryfall
+Retrieve Scryfall results from inside Google Sheets
+
+![](example_output.png)
 
 # Installation
 
@@ -7,8 +9,6 @@ To install, copy the contents of [scryfall-google-sheets.js](https://raw.githubu
 Once you've copied it to your clipboard, open your sheet and go to Tools -> Script Editor. Paste the contents of
 your clipboard into the script editor and choose to save. Once you've done so, return to your spreadsheet
 and the `=SCRYFALL()` function should now be available.
-
-![](example_output.png)
 
 # Usage
 
