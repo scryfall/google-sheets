@@ -45,7 +45,15 @@ const SCRYFALL = (query, fields = "name", num_results = 150,
     "url": "scryfall_uri",
   }
 
-  fields = fields.map(field => field_mappings[field] === undefined ? field : field_mappings[field])
+  // do the same friendly thing, but for sorting options
+  const order_mappings = {
+    "price": "usd",
+    "prices.eur": "eur",
+    "prices.usd": "usd",
+  };
+
+  fields = fields.map(field => field_mappings[field] === undefined ? field : field_mappings[field]);
+  order = order_mappings[order] === undefined ? order : order_mappings[order];
 
   // google script doesn't have URLSearchParams
   const scryfall_query = {
