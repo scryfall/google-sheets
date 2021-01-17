@@ -32,6 +32,9 @@ As it can be difficult to describe how to use a function, here are some examples
 ### List of creatures with 10 or more power
 `=SCRYFALL("type:creature pow>=10")`
 
+### The price of every card in Dominaria, sorted by price (USD)
+`=SCRYFALL("set:dom", "name prices.usd prices.eur", 750, "price")`
+
 ### Legacy legal cards in paper but not available on Magic Online, returning 700 results
 `=SCRYFALL("in:paper -in:mtgo legal:legacy", "name", 700)`
 
