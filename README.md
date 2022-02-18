@@ -6,9 +6,9 @@ Retrieve Scryfall results from inside Google Sheets
 
 To install, copy the contents of [scryfall-google-sheets.js](https://raw.githubusercontent.com/scryfall/google-sheets/main/scryfall-google-sheets.js).
 
-Once you've copied it to your clipboard, open your sheet and go to Tools -> Script Editor. Paste the contents of
-your clipboard into the script editor and choose to save. Once you've done so, return to your spreadsheet
-and the `=SCRYFALL()` function should now be available.
+Once you've copied it to your clipboard, open your sheet and go to Extensions -> Apps Script. Paste the contents of
+your clipboard into the script editor and choose to save. You may get a pop-up that requests permission though, the script should work either way. Once you've done so, return to your spreadsheet
+and the `=SCRYFALL()` function should now be available. You can click on info in the apps script page to see which file is listed as the Container for the script it should match the spreadsheet you're working on.
 
 # Usage
 
