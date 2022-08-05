@@ -139,3 +139,76 @@ const scryfallSearch_ = (params, num_results = MAX_RESULTS_) => {
 
   return data;
 };
+
+/**
+ * Inserts the sets in Scryfall into your spreadsheet
+ *
+ * @param {"name code released_at"}       fields      List of fields to return from Scryfall, "name" is default
+ * @param {"core expansion promo"}        types       List of set types to return from Scryfall, "all" set types is default
+ * @param {700}                           num_results Number of results (default 150, maximum 700)
+ * @return                                List of Scryfall sets
+ * @customfunction
+ */
+const SCRYFALLSETS = (fields = "name", types = "all", num_results = 700) => {
+  if (num_results > MAX_RESULTS_) {
+    num_results = MAX_RESULTS_;
+  }
+
+  // do some mapping of fields for convenience
+  const field_mappings = {
+    "type": "set_type",
+    "release": "released_at",
+    "date": "released_at",
+    "flavor": "flavor_text",
+    "parent_code": "parent_set_code",
+    "url": "scryfall_uri",
+  }
+
+  // allow spaces or comma separated for fields
+  fields = fields.split(/[\s,]+/);
+  fields = fields.map(field => field_mappings[field] === undefined ? field : field_mappings[field]);
+
+  // allow spaces or comma separated for types
+  const filter_types = types !== "all";
+  types = types.split(/[\s,]+/);
+
+  const sets = scryfallSets_(num_results);
+  let output = [];
+
+  sets.forEach(set => {
+    if (filter_types && types.indexOf(set.set_type) < 0) {
+      return ;
+    }
+
+    let row = [];
+    fields.forEach(field => {
+      row.push(set[field] || "");
+    });
+
+    output.push(row);
+  });
+
+  output = output.splice(0, num_results);
+
+  return output;
+};
+
+// query sets endpoint
+const scryfallSets_ = (num_results = MAX_RESULTS_) => {
+  const scryfall_url = 'https://api.scryfall.com/sets';
+  let data = [];
+
+  try {
+    let response = JSON.parse(UrlFetchApp.fetch(`${scryfall_url}`).getContentText());
+
+    if (!response.data) {
+      throw new Error("No sets from Scryfall");
+    }
+
+    data.push(...response.data);
+  } catch (error) {
+    throw new Error(`Unable to retrieve sets from Scryfall: ${error}`);
+  }
+
+  return data;
+};

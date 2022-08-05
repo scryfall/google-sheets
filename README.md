@@ -44,6 +44,27 @@ As it can be difficult to describe how to use a function, here are some examples
 ### Commander cards not available in foil, with name, set name, release date, color identity, URL, and oracle text, sorted by EDHREC popularity
 `=SCRYFALL("-in:foil game:paper legal:commander -is:reprint -is:reserved", "name set_name released_at color url oracle", 150, "edhrec")`
 
+# Listing Sets
+
+Create a spreadsheet of Magic sets.
+
+## Usage
+
+```
+SCRYFALLSETS(fields, types, num_results)
+
+* `query`: Scryfall search query
+* `fields`: List of fields from a set object to return
+* `types`: List of set types to return from Scryfall, "all" set types is default
+* `num_results`: Number of results to return (maximum 700)
+```
+
+### List set names
+`=SCRYFALLSETS("name")`
+
+### List set details and limit the results to specific set types
+`=SCRYFALLSETS("name code release type", "core expansion commander")`
+
 # "Bugs"
 
 Note that your search *must* return a result in 30 seconds or less. Asking for too many results can result in 
