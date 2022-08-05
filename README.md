@@ -6,10 +6,9 @@ Retrieve Scryfall results from inside Google Sheets
 
 1. Copy the contents of [scryfall-google-sheets.js](https://raw.githubusercontent.com/scryfall/google-sheets/main/scryfall-google-sheets.js).
 1. Open your sheet and go to **Extensions &rarr; Apps Scripts**
-1. Paste the contents of your clipboard into the script editor, then hit Save. (Nothing special will happen.)
-1. Return to your spreadsheet and the `=SCRYFALL()` function should now be available.
-
-**You do not need to Deploy.** That's not applicable here.
+1. Paste the contents of your clipboard into the script editor, then hit Save. (Nothing special will happen. You do not need to hit Deploy.)
+1. You're done! The `=SCRYFALL()` function should now be available on your spreadsheet.
+1. Return to your spreadsheet. Pick any cell and start typing `=SCRYFALL` and. Its autocomplete should begin showing up.
 
 # Usage
 
