@@ -1,6 +1,6 @@
 // this function is available here:
 // https://github.com/scryfall/google-sheets/blob/main/scryfall-google-sheets.js
-// and was last updated on 2021-01-08 (probably)
+// and was last updated on 2022-10-18 (probably)
 
 const MAX_RESULTS_ = 700;  // a safe max due to Google Sheets timeout system
 
@@ -72,9 +72,9 @@ const SCRYFALL = (query, fields = "name", num_results = 150,
   cards.splice(0, num_results).forEach(card => {
     let row = [];
 
-    // there is probably a better way to handle card faces, but this is
-    // probably sufficient for the vast majority of use cases
+    // use front face of the card, but keeping the full name
     if ("card_faces" in card) {
+      card["card_faces"][0]["name"] = card["name"];
       Object.assign(card, card["card_faces"][0]);
     }
 
