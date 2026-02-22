@@ -4,6 +4,12 @@
 
 const MAX_RESULTS_ = 700;  // a safe max due to Google Sheets timeout system
 
+// ---- Configure these ----
+const SCRYFALL_USER_AGENT_ =
+  "GoogleSheets-Scryfall/1.0 via https://github.com/scryfall/google-sheets";
+const SCRYFALL_ACCEPT_ = "application/json;q=0.9,*/*;q=0.8";
+// -------------------------
+
 /**
  * Inserts the results of a search in Scryfall into your spreadsheet
  *
@@ -119,7 +125,13 @@ const scryfallSearch_ = (params, num_results = MAX_RESULTS_) => {
   // try to get the results from scryfall
   try {
     while (true) {
-      response = JSON.parse(UrlFetchApp.fetch(`${scryfall_url}&page=${page}`).getContentText());
+      response = JSON.parse(UrlFetchApp.fetch(`${scryfall_url}&page=${page}`, {
+        method: "get",
+        headers: {
+          "User-Agent": SCRYFALL_USER_AGENT_,
+          "Accept": SCRYFALL_ACCEPT_,
+        },
+      }).getContentText());
 
       if (!response.data) {
         throw new Error("No results from Scryfall");
