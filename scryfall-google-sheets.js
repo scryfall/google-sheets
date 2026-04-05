@@ -4,6 +4,9 @@
 
 const MAX_RESULTS_ = 700;  // a safe max due to Google Sheets timeout system
 
+const RATE_LIMIT = 2; // max waits per second
+const REQUEST_WAIT_MS = 1000 / RATE_LIMIT; // time to wait between requests
+
 /**
  * Inserts the results of a search in Scryfall into your spreadsheet
  *
@@ -119,7 +122,7 @@ const scryfallSearch_ = (params, num_results = MAX_RESULTS_) => {
   // try to get the results from scryfall
   try {
     while (true) {
-      Utilities.sleep(500);
+      Utilities.sleep(REQUEST_WAIT_MS);
       
       response = JSON.parse(UrlFetchApp.fetch(`${scryfall_url}&page=${page}`).getContentText());
 
