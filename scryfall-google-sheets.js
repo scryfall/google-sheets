@@ -119,6 +119,8 @@ const scryfallSearch_ = (params, num_results = MAX_RESULTS_) => {
   // try to get the results from scryfall
   try {
     while (true) {
+      Utilities.sleep(500);
+      
       response = JSON.parse(UrlFetchApp.fetch(`${scryfall_url}&page=${page}`).getContentText());
 
       if (!response.data) {
